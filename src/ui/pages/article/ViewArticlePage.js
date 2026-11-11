@@ -9,11 +9,16 @@ export class ViewArticlePage {
   }
 
   async waitFor() {
-    await this.page.waitForURL('https://conduit.mate.academy/article/*');
+    // eslint-disable-next-line max-len
+    await test.step(`Wait until the View Article page URL changes`, async () => {
+      await this.page.waitForURL('https://conduit.mate.academy/article/*');
+    });
   }
 
   async reload() {
-    await this.page.reload();
+    await test.step(`Reload the View Article page`, async () => {
+      await this.page.reload();
+    });
   }
 
   async assertArticleTitleIsVisible(title) {

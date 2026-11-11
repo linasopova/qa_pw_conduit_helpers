@@ -6,7 +6,7 @@ import { generateNewArticleData } from '../../src/common/testData/generateNewArt
 import { signUpUser } from '../../src/ui/actions/auth/signUpUser';
 import { ViewArticlePage } from '../../src/ui/pages/article/ViewArticlePage';
 import { UserProfilePage } from '../../src/ui/pages/user/UserProfilePage';
-import { createNewArticleWithoutTags } from '../../src/ui/actions/auth/article/createNewArticleWithoutTags';
+import { createNewArticle } from '../../src/ui/actions/article/createNewArticle';
 
 let createArticlePage;
 let viewArticlePage;
@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
   const user = generateNewUserData();
 
   await signUpUser(page, user);
-  await createNewArticleWithoutTags(page, article);
+  await createNewArticle(page, article);
 });
 
 test('Edit the article description for the existing article', async () => {
