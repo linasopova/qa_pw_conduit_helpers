@@ -6,14 +6,17 @@ import { generateNewArticleData } from '../../src/common/testData/generateNewArt
 import { signUpUser } from '../../src/ui/actions/auth/signUpUser';
 import { ViewArticlePage } from '../../src/ui/pages/article/ViewArticlePage';
 import { createNewArticle } from '../../src/ui/actions/article/createNewArticle';
+import { UserProfilePage } from '../../src/ui/pages/user/UserProfilePage';
 
 let createArticlePage;
 let viewArticlePage;
+let userProfilePage;
 let article;
 
 test.beforeEach(async ({ page }) => {
   createArticlePage = new CreateArticlePage(page);
   viewArticlePage = new ViewArticlePage(page);
+  userProfilePage = new UserProfilePage(page);
   article = generateNewArticleData();
   const user = generateNewUserData();
 
@@ -41,4 +44,9 @@ test('Edit all fields for the existing article without tags', async () => {
   await viewArticlePage.assertArticleTextIsVisible(updatedText);
   await viewArticlePage.assertArticleTitleIsVisible(updatedTitle);
   await viewArticlePage.assertArticleTagListIsVisible(tag);
+  await viewArticlePage.clickUserProfileButton();
+
+  await userProfilePage.assertArticleDescriptionContainsText(
+    updatedDescription,
+  );
 });
